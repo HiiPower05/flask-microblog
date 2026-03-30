@@ -1,4 +1,5 @@
 from flask import render_template, flash, redirect, url_for, request
+from datetime import datetime
 from app.forms import LoginForm
 from app.forms import RegistrationForm
 from flask_login import current_user, login_user
@@ -37,7 +38,7 @@ def login():
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or urlparse(next_page).netloc != '':
-            next_page - url_for('index')
+            next_page = url_for('index')
         return redirect(next_page)
     return render_template('login.html',  title='Sign In', form=form)
         
@@ -69,3 +70,9 @@ def user(username):
         {'author': user, 'body': 'Test post #2'}
     ]
     return render_template('user.html', user=user, posts=posts)
+
+@app.before_request
+def before_request():
+    if current_user.is_authenticated:
+        current_user.last_seen = datetime.utcnow()
+        db.session.commit()
