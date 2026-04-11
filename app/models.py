@@ -28,6 +28,17 @@ class User(UserMixin, db.Model):
             digest, size
         )
     
+    followers = db.Table('followers',
+    db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
+    db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
+                     )
+
+    followed = db.relationship(
+        'User', secondary=followers,
+        primaryjoin = (followers.c.follower_id == id),
+        secondaryjoin = (followers.c.followed_id == id),
+        backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
+    
     
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -41,3 +52,6 @@ class Post(db.Model):
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
+
+
+
