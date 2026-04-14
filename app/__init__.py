@@ -5,6 +5,7 @@ import logging
 import os
 from logging.handlers import SMTPHandler, RotatingFileHandler
 from flask import Flask
+from flask_mail import Mail
 from config import Config
 
 
@@ -14,6 +15,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
+mail = Mail(app)
 
 from app import routes, models, errors
 
