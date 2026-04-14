@@ -48,3 +48,5 @@ jinja2.exceptions.UndefinedError: 'form' is undefined
 2026-04-13 12:15:38,349 INFO: Microblog startup [in C:\Users\Euan\Desktop\Flask\app\__init__.py:45]
 2026-04-13 12:17:20,983 INFO: Microblog startup [in C:\Users\Euan\Desktop\Flask\app\__init__.py:45]
 2026-04-13 12:22:32,489 INFO: Microblog startup [in C:\Users\Euan\Desktop\Flask\app\__init__.py:45]
+2026-04-14 20:40:30,813 INFO: Microblog startup [in C:\Users\Euan\Desktop\Flask\app\__init__.py:45]
+2026-04-14 20:50:38,920 INFO: Microblog startup [in C:\Users\Euan\Desktop\Flask\app\__init__.py:45]
